@@ -21,7 +21,7 @@ taskkill /f /im RiotClientServices.exe /t
 echo.
 echo Waiting to validate if League of Legends has ended...
 
-timeout /t 5 /nobreak
+timeout /t 3 /nobreak
 
 echo.
 echo Searching for remaining executable processes...
@@ -35,7 +35,7 @@ echo League of Legends has been closed!
 
 echo.
 echo Waiting for system...
-timeout /t 5 /nobreak
+timeout /t 3 /nobreak
 
 echo.
 echo Starting League of Legends...
