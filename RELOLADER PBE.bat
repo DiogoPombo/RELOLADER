@@ -1,4 +1,6 @@
 @echo off
+@title RELOLADER for PBE
+
 set APP=RELOLADER
 set AUTHOR=POMBO
 set AVATAR=\Õ/
@@ -7,68 +9,108 @@ set SPACE=
 set KEY=@2024
 echo %APP%%SPACE%%MADE_BY%%SPACE%%SPACE%%AUTHOR%%SPACE%%SPACE%%AVATAR%%SPACE%%KEY%
 
-echo.
-echo: ******************** RELOLADER PBE ********************
+COLOR 0F
 
 echo.
-echo Attention! This script only works for conventional installation of League of Legends in "C:\Riot Games\Riot Client\". If your Client is installed in another path or this path was changed in future updates, this script will not work correctly.
+echo: ******************** RELOLADER for PBE ********************
 
 echo.
-echo Attempting to close League of Legends PBE...
+echo RELOLADER for PBE is a version of RELOLADER dedicated to the PBE server!
+echo.
+echo RELOLADER is a script that restart your League of Legends if it's crashed, does not affect Vanguard!
+echo.
+echo.
+echo Attention! This script only works for conventional installation of League of Legends in "C:\Riot Games\Riot Client", if your client is installed in another path or this path was changed in future updates, this will not work!
+timeout /t 10 /nobreak
+
+echo.
+echo Attempting to close PBE. . .
 
 taskkill /f /im RiotClientServices.exe /t
 if %errorlevel% neq 0 (
-    echo Error
+COLOR 0C
+echo Error: Processes not found!
 )
 
 taskkill /f /im LeagueClient.exe /t
 if %errorlevel% neq 0 (
-    echo Error
+echo.
+echo Predicted error: Processes not found!
+timeout /t 2 /nobreak >nul
 )
 
+cls
+COLOR 0F
 echo.
-echo Waiting to validate if League of Legends PBE has ended...
-
-timeout /t 5 /nobreak
-
+echo Waiting to validate if PBE has ended. . .
+timeout /t 2 /nobreak >nul
 echo.
-echo Searching for remaining executable processes...
-
-taskkill /f /im RiotClientServices.exe /t
-if %errorlevel% neq 0 (
-    echo Error
-)
+echo Searching for remaining executable processes. . .
+timeout /t 2 /nobreak >nul
 
 taskkill /f /im LeagueClient.exe /t
 if %errorlevel% neq 0 (
-    echo Error
+echo.
+echo Predicted error: Processes not found!
+timeout /t 2 /nobreak >nul
 )
 
-echo.
-echo PBE has been closed!
+timeout /t 2 /nobreak >nul
 
+taskkill /f /im RiotClientServices.exe /t
+if %errorlevel% neq 0 (
 echo.
-echo Attempting to start League of Legends in PBE patchline...
+echo Predicted error: Processes not found!
+timeout /t 2 /nobreak >nul
+cls
+COLOR 0B
+echo.
+echo Success: No additional processes detected!
+echo.
+echo Success: PBE has been closed!
+timeout /t 2 /nobreak >nul
+)
+
+cls
+COLOR 0F
+echo.
+echo Attempting to start League of Legends in PBE patchline. . .
 
 cd "C:\Riot Games\Riot Client\"
 if %errorlevel% neq 0 (
-cls
-color color 0C
-echo Error: Unable to access the Riot Games client directory
-pause
+COLOR 0C
+echo Error: Unable to access the Riot Games client directory at "C:\Riot Games\Riot Client\"
+echo.
+echo Error: Can't open PBE!
+echo.
+echo Press any key to exit!
+pause >nul
 exit /b %errorlevel%
 )
 
+timeout /t 2 /nobreak >nul
+
 start RiotClientServices.exe --launch-product=league_of_legends --launch-patchline=pbe
 if %errorlevel% neq 0 (
-cls
-color color 0C
-echo Error: Failed to start RiotClientServices.exe
-pause
+COLOR 0C
+echo Error: Failed to start "RiotClientServices.exe"
+echo.
+echo Error: Can't open PBE!
+echo.
+echo Press any key to exit!
+pause >nul
 exit /b %errorlevel%
 )
 
 echo.
+echo Loading. . .
+timeout /t 15 /nobreak >nul
+
+cls
+COLOR 0B
+echo.
 echo Done!
+
+timeout /t 2 /nobreak >nul
 
 exit
