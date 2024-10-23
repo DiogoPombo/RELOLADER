@@ -19,7 +19,7 @@ echo RELOLADER is a script that restart your League of Legends if it's crashed, 
 echo.
 echo.
 echo Attention! This script only works for conventional installation of League of Legends in "C:\Riot Games\Riot Client", if your client is installed in another path or this path was changed in future updates, this will not work!
-timeout /t 10 /nobreak
+timeout /t 2 /nobreak >nul
 
 echo.
 echo Attempting to close League of Legends. . .
